@@ -1,0 +1,8 @@
+{
+  "name": "DevVision - Web & AI Expert",
+  "description": "Uma landing page profissional para desenvolvedores web com um consultor de IA integrado para ajudar clientes a planejar seus projetos digitais.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
