@@ -9,7 +9,6 @@ import Portfolio from './components/Portfolio';
 import PortfolioPage from './components/PortfolioPage';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import AIAssistant from './components/AIAssistant';
 import ProjectBuilder from './components/ProjectBuilder';
 
 const App: React.FC = () => {
@@ -31,7 +30,6 @@ const App: React.FC = () => {
     return (
       <div className="min-h-screen bg-slate-950 text-white font-['Inter']">
         <ProjectBuilder onClose={() => navigateTo('home')} initialModel={selectedModel} />
-        <AIAssistant />
       </div>
     );
   }
@@ -58,7 +56,6 @@ const App: React.FC = () => {
         )}
       </main>
       <Footer />
-      <AIAssistant />
     </div>
   );
 };
