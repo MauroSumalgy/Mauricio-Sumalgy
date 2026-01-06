@@ -6,13 +6,7 @@ export const websiteModels = [
     id: 'linkbio',
     title: 'Link Bio Profissional',
     price: 'A partir de 5.000 MT',
-    specs: [
-      'Otimizado para Instagram/TikTok',
-      'Design Mobile-First Radical',
-      'Botões de Ação Estratégicos',
-      'Analytics de Cliques Integrado',
-      'Carregamento Instantâneo'
-    ],
+    specs: ['Otimizado Instagram', 'Mobile-First', 'Alta Conversão'],
     icon: 'fa-link',
     color: 'from-cyan-500 to-emerald-500'
   },
@@ -20,13 +14,7 @@ export const websiteModels = [
     id: 'landing',
     title: 'Landing Page Express',
     price: 'A partir de 15.000 MT',
-    specs: [
-      'Design Single Page de Alta Conversão',
-      'Otimização Extrema (Core Web Vitals)',
-      'Integração direta com WhatsApp/E-mail',
-      'SEO Básico e Responsividade Total',
-      'Hospedagem em CDN Global'
-    ],
+    specs: ['Design Elite', 'Performance 90+', 'Foco em Vendas'],
     icon: 'fa-rocket',
     color: 'from-cyan-400 to-emerald-400'
   },
@@ -34,13 +22,7 @@ export const websiteModels = [
     id: 'portfolio-cre',
     title: 'Portfolio Criativo',
     price: 'A partir de 20.000 MT',
-    specs: [
-      'Foco Total em Impacto Visual',
-      'Galeria de Projetos Interativa',
-      'Página Sobre Mim / Currículo',
-      'Formulário de Contato Direto',
-      'Otimização para Imagens HD'
-    ],
+    specs: ['Galeria HD', 'Impacto Visual', 'Clean Design'],
     icon: 'fa-palette',
     color: 'from-emerald-500 to-teal-500'
   },
@@ -48,13 +30,7 @@ export const websiteModels = [
     id: 'onepage',
     title: 'One Page Business',
     price: 'A partir de 25.000 MT',
-    specs: [
-      'Toda a Empresa em uma Única Página',
-      'Seções de Serviços, Equipe e FAQ',
-      'Navegação Suave (Anchor Links)',
-      'Google Maps Integrado',
-      'CTA Fixo no Rodapé Mobile'
-    ],
+    specs: ['Tudo em 1 Página', 'Mapa & Contato', 'Navegação Suave'],
     icon: 'fa-briefcase',
     color: 'from-amber-500 to-cyan-500'
   },
@@ -62,13 +38,7 @@ export const websiteModels = [
     id: 'corporate',
     title: 'Corporate Pro',
     price: 'A partir de 35.000 MT',
-    specs: [
-      'Site Multi-páginas Institucional',
-      'Painel de Gestão de Conteúdo (CMS)',
-      'Blog Integrado e SEO Avançado',
-      'Análise de Tráfego (Google Analytics)',
-      'E-mails Corporativos Inclusos'
-    ],
+    specs: ['Site Multi-página', 'Painel CMS', 'SEO Avançado'],
     icon: 'fa-building',
     color: 'from-cyan-600 to-indigo-600'
   },
@@ -76,13 +46,7 @@ export const websiteModels = [
     id: 'ecommerce',
     title: 'E-commerce Advanced',
     price: 'Sob Consulta',
-    specs: [
-      'Catálogo de Produtos Ilimitado',
-      'Carrinho de Compras e Checkout Seguro',
-      'Gestão de Estoque e Pedidos',
-      'Integração com Gateways de Pagamento',
-      'Painel Administrativo Robusto'
-    ],
+    specs: ['Vendas 24/7', 'Checkout Seguro', 'Gestão Total'],
     icon: 'fa-shopping-bag',
     color: 'from-emerald-600 to-cyan-700'
   }
@@ -97,25 +61,28 @@ const Models: React.FC<ModelsProps> = ({ onSelect }) => {
     <section id="modelos" className="py-24 bg-slate-950">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-cyan-500 font-bold tracking-[0.3em] uppercase text-xs mb-4">Escolha seu Modelo</h2>
-          <h3 className="text-4xl md:text-5xl font-extrabold mb-6 tracking-tight">Arquiteturas <span className="text-slate-500">Sob Medida</span></h3>
-          <p className="text-slate-400 max-w-2xl mx-auto">Desenvolvemos cada projeto com as tecnologias mais modernas do mercado, garantindo velocidade e segurança.</p>
+          <h2 className="text-cyan-400 font-black tracking-[0.3em] uppercase text-[10px] mb-4">Planos & Modelos</h2>
+          <h3 className="text-4xl sm:text-6xl font-black mb-6 tracking-tighter">Estruturas de <span className="gradient-text">Alto Nível</span></h3>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {websiteModels.map((model) => (
-            <div key={model.id} className="glass rounded-[2rem] p-8 border border-white/5 flex flex-col hover:border-cyan-500/30 transition-all duration-500 group">
-              <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${model.color} flex items-center justify-center mb-8 shadow-lg shadow-cyan-500/10`}>
-                <i className={`fas ${model.icon} text-white text-2xl`}></i>
+            <div key={model.id} className="glass rounded-[2.5rem] p-8 border border-white/5 flex flex-col group hover:border-cyan-500/40 transition-all duration-500">
+              <div className="flex justify-between items-start mb-10">
+                <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${model.color} flex items-center justify-center shadow-lg shadow-cyan-500/10`}>
+                  <i className={`fas ${model.icon} text-white text-xl`}></i>
+                </div>
+                <div className="text-right">
+                  <p className="text-cyan-400 font-black text-xs uppercase tracking-tighter">{model.price}</p>
+                </div>
               </div>
               
-              <h4 className="text-2xl font-bold mb-2 group-hover:text-cyan-400 transition-colors">{model.title}</h4>
-              <p className="text-cyan-500 font-mono text-xs mb-6 font-bold">{model.price}</p>
+              <h4 className="text-2xl font-bold mb-6">{model.title}</h4>
               
               <ul className="space-y-4 mb-10 flex-1">
                 {model.specs.map((spec, i) => (
-                  <li key={i} className="flex items-start gap-3 text-sm text-slate-300 leading-relaxed">
-                    <i className="fas fa-check-circle text-cyan-500 mt-1"></i>
+                  <li key={i} className="flex items-center gap-3 text-sm text-slate-400">
+                    <i className="fas fa-check text-cyan-500/50 text-[10px]"></i>
                     {spec}
                   </li>
                 ))}
@@ -123,9 +90,9 @@ const Models: React.FC<ModelsProps> = ({ onSelect }) => {
               
               <button 
                 onClick={() => onSelect(model.title)}
-                className="w-full py-4 bg-slate-900 border border-white/10 rounded-xl font-black text-xs uppercase tracking-widest hover:bg-cyan-500 hover:text-slate-950 transition-all text-center block text-white hover:shadow-xl transform active:scale-[0.98]"
+                className="w-full py-5 bg-white/5 border border-white/10 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-cyan-500 hover:text-slate-950 transition-all active:scale-[0.98]"
               >
-                Selecionar Modelo
+                Selecionar Este
               </button>
             </div>
           ))}

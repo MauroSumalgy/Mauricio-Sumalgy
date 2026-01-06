@@ -36,21 +36,21 @@ const services = [
 
 const Services: React.FC = () => {
   return (
-    <section id="servicos" className="py-32 relative">
+    <section id="servicos" className="py-20 sm:py-32 relative">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-20">
-          <h2 className="text-cyan-500 font-black tracking-[0.3em] uppercase text-xs mb-4">Especialidades</h2>
-          <h3 className="text-4xl md:text-6xl font-black mb-6">Soluções para a <br /><span className="text-slate-500">Era Digital</span></h3>
+        <div className="text-center mb-12 sm:mb-20">
+          <h2 className="text-cyan-500 font-black tracking-[0.3em] uppercase text-[10px] sm:text-xs mb-4">Especialidades</h2>
+          <h3 className="text-3xl sm:text-4xl md:text-6xl font-black mb-4 sm:mb-6 leading-tight">Soluções para a <br /><span className="text-slate-500">Era Digital</span></h3>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {services.map((s, idx) => (
-            <div key={idx} className="glass p-10 rounded-[2.5rem] group hover:bg-cyan-600/10 transition-all duration-500 border border-white/5 hover:border-cyan-500/30">
-              <div className="w-16 h-16 bg-cyan-500/10 rounded-[1.25rem] flex items-center justify-center mb-8 group-hover:bg-cyan-600 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
-                <i className={`fas ${s.icon} text-2xl text-cyan-500 group-hover:text-white`}></i>
+            <div key={idx} className="glass p-8 sm:p-10 rounded-[2rem] sm:rounded-[2.5rem] group hover:bg-cyan-600/10 transition-all duration-500 border border-white/5 hover:border-cyan-500/30">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 bg-cyan-500/10 rounded-[1.25rem] flex items-center justify-center mb-6 sm:mb-8 group-hover:bg-cyan-600 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
+                <i className={`fas ${s.icon} text-xl sm:text-2xl text-cyan-500 group-hover:text-white`}></i>
               </div>
-              <h4 className="text-2xl font-bold mb-4 group-hover:text-cyan-400 transition-colors">{s.title}</h4>
-              <p className="text-slate-400 leading-relaxed text-lg">{s.description}</p>
+              <h4 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 group-hover:text-cyan-400 transition-colors">{s.title}</h4>
+              <p className="text-slate-400 leading-relaxed text-base sm:text-lg">{s.description}</p>
             </div>
           ))}
         </div>

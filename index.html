@@ -12,10 +12,11 @@
         body {
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
         .glass {
             background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(12px);
+            backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
         .gradient-text {
@@ -23,29 +24,36 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        .glow-cyan {
-            box-shadow: 0 0 40px -10px rgba(34, 211, 238, 0.3);
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
         @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
         .animate-fade-up {
-            animation: fadeUp 0.8s ease-out forwards;
+            animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
         ::-webkit-scrollbar {
-            width: 8px;
+            width: 6px;
         }
         ::-webkit-scrollbar-track {
             background: #020617;
         }
         ::-webkit-scrollbar-thumb {
-            background: #0f172a;
+            background: #1e293b;
             border-radius: 10px;
-            border: 1px solid rgba(34, 211, 238, 0.1);
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #1e293b;
+            background: #334155;
+        }
+        /* Mobile specific font tweaks */
+        @media (max-width: 640px) {
+            h1 { letter-spacing: -0.05em !important; }
         }
     </style>
 <script type="importmap">
