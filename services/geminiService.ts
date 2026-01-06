@@ -2,11 +2,11 @@
 import { GoogleGenAI } from "@google/genai";
 import { Message } from "../types";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
-
 export const getAIResponse = async (userMessage: string, history: Message[]) => {
+  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
+  
   try {
-    const chat = ai.models.generateContent({
+    const response = await ai.models.generateContent({
       model: 'gemini-3-flash-preview',
       contents: [
         ...history.map(m => ({
@@ -19,26 +19,30 @@ export const getAIResponse = async (userMessage: string, history: Message[]) => 
         }
       ],
       config: {
-        systemInstruction: `Você é o Consultor Estratégico da DevVision. 
-        Seu objetivo exclusivo é ajudar clientes a escolherem o modelo de site ideal para o negócio deles.
-        Nossos modelos principais são:
-        1. Landing Page Express: Foco em conversão única, 1 página, SEO otimizado.
-        2. Corporate Pro: Sites institucionais completos, CMS, Blog, Multi-páginas.
-        3. E-commerce Advanced: Lojas virtuais com gestão de estoque e pagamentos.
-        4. Custom SaaS/App: Sistemas sob medida com banco de dados e lógica complexa.
+        systemInstruction: `Você é o Consultor Estratégico Sênior da TheVision (Agência de Desenvolvimento Web & IA).
+        Seu objetivo é ser técnico, minimalista, elegante e extremamente focado em converter o visitante em cliente.
 
-        Ajude o usuário a entender as especificações técnicas (Next.js, Tailwind, Performance Score 90+, etc).
-        Sempre que o usuário demonstrar interesse em um orçamento, peça para ele clicar no botão "Enviar via WhatsApp" ou finalize a conversa direcionando-o para o número +258 83 512 7350.
-        Seja técnico, persuasivo e profissional.`,
+        DIRETRIZES DE RESPOSTA:
+        1. SOBRE A THEVISION: Explique que somos especialistas em Performance (sites que carregam em <1s), Design de Elite e Integração com IA.
+        2. DÚVIDAS TÉCNICAS: Responda sobre SEO, Responsividade, React, Next.js e por que essas tecnologias são melhores para o negócio do cliente.
+        3. PREÇOS E ORÇAMENTOS (CRITICAL): Se o cliente perguntar sobre valores específicos, preços de modelos ou quiser um orçamento personalizado, você DEVE dizer explicitamente: 
+           "Para fornecer um orçamento preciso e discutir condições especiais, por favor, clique no ícone do WhatsApp no topo desta conversa ou envie uma mensagem direta para +258 83 512 7350. Nossa equipe comercial está pronta para te atender agora."
+        4. MODELOS: Recomende os modelos do site (Landing Page Express, Corporate Pro, E-commerce Advanced, etc) conforme a necessidade do cliente, mas sempre reforçando que o preço final é fechado via WhatsApp.
+        5. TOM DE VOZ: Profissional, futurista e encorajador.
+
+        DADOS DA AGÊNCIA:
+        - WhatsApp: +258 83 512 7350
+        - Fundador/Dev Principal: Maurício Sumalgy
+        - Localização: Moçambique (atendimento global).
+        - Especialidade: Transformar visão em lucro digital.`,
         temperature: 0.7,
-        topP: 0.95,
+        topP: 0.9,
       }
     });
 
-    const result = await chat;
-    return result.text || "Desculpe, tive um problema técnico. Pode repetir?";
+    return response.text || "Estou analisando sua solicitação... Poderia detalhar melhor seu objetivo?";
   } catch (error) {
     console.error("Gemini API Error:", error);
-    return "Ocorreu um erro. Por favor, tente novamente.";
+    return "Tive uma breve oscilação na minha rede neural. Mas estou de volta! Como posso ajudar com seu projeto digital?";
   }
 };

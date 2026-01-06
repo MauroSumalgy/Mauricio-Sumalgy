@@ -1,67 +1,62 @@
 
 import React from 'react';
 
+interface PortfolioProps {
+  onSeeMore?: () => void;
+}
+
 const projects = [
   {
-    title: 'FinTech Dashboard',
-    category: 'SaaS / Web App',
-    image: 'https://picsum.photos/seed/dash/800/600'
+    title: 'Nexus Intelligence',
+    category: 'AI Platform',
+    icon: 'fa-brain-circuit',
+    color: 'from-cyan-600/20 to-transparent'
   },
   {
-    title: 'E-Shop Pro',
+    title: 'Aura Luxury Retail',
     category: 'E-commerce',
-    image: 'https://picsum.photos/seed/shop/800/600'
+    icon: 'fa-gem',
+    color: 'from-emerald-600/20 to-transparent'
   },
   {
-    title: 'ZenFlow App',
-    category: 'Landing Page',
-    image: 'https://picsum.photos/seed/zen/800/600'
+    title: 'Quantum Fintech',
+    category: 'SaaS',
+    icon: 'fa-chart-network',
+    color: 'from-cyan-500/20 to-transparent'
   }
 ];
 
-const Portfolio: React.FC = () => {
-  const openGithub = () => {
-    window.open('https://github.com', '_blank');
-  };
-
+const Portfolio: React.FC<PortfolioProps> = ({ onSeeMore }) => {
   return (
-    <section id="portfolio" className="py-24 relative overflow-hidden">
+    <section id="portfolio" className="py-32 bg-slate-950">
       <div className="container mx-auto px-6">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+        <div className="mb-20 flex items-center justify-between">
           <div>
-            <h2 className="text-blue-500 font-bold tracking-widest uppercase text-sm mb-4">Trabalhos Recentes</h2>
-            <h3 className="text-4xl md:text-5xl font-extrabold">Criando Experiências <br /> Digitais de Excelência</h3>
+            <h2 className="text-4xl md:text-5xl font-black mb-2 tracking-tighter">Cases <span className="text-cyan-500">Premium</span></h2>
+            <p className="text-slate-500 font-medium uppercase text-xs tracking-[0.3em]">Excelência técnica sem distrações.</p>
           </div>
-          <button 
-            onClick={openGithub}
-            className="group text-blue-500 font-bold flex items-center gap-2 hover:text-blue-400 transition-colors"
-          >
-            Ver tudo no GitHub 
-            <i className="fas fa-external-link-alt text-xs group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
-          </button>
+          <div className="h-px flex-1 mx-12 bg-white/5 hidden lg:block"></div>
+          {onSeeMore && (
+            <button 
+              onClick={onSeeMore}
+              className="text-[10px] font-black uppercase tracking-[0.2em] px-8 py-4 border border-white/10 rounded-full hover:bg-white hover:text-slate-950 transition-all"
+            >
+              Ver Tudo
+            </button>
+          )}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {projects.map((p, idx) => (
-            <div 
-              key={idx} 
-              className="group cursor-pointer"
-              onClick={() => document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })}
-            >
-              <div className="relative overflow-hidden rounded-3xl mb-6 shadow-2xl shadow-slate-950">
-                <img 
-                  src={p.image} 
-                  alt={p.title} 
-                  className="w-full h-[300px] object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
-                />
-                <div className="absolute inset-0 bg-blue-600/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <div className="w-14 h-14 bg-white text-blue-600 rounded-full flex items-center justify-center shadow-xl transform scale-50 group-hover:scale-100 transition-transform duration-300">
-                    <i className="fas fa-eye"></i>
-                  </div>
+            <div key={idx} className="group cursor-pointer" onClick={onSeeMore}>
+              <div className={`relative overflow-hidden rounded-[2.5rem] border border-white/5 bg-slate-900 aspect-square mb-6 shadow-2xl transition-all duration-500 group-hover:border-cyan-500/30 flex flex-col items-center justify-center bg-gradient-to-br ${p.color}`}>
+                <i className={`fas ${p.icon} text-6xl text-cyan-500/50 group-hover:text-cyan-400 group-hover:scale-110 transition-all duration-500`}></i>
+                <div className="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[4px]">
+                  <span className="px-8 py-3 bg-white text-slate-950 rounded-full font-black text-xs uppercase tracking-[0.2em] shadow-xl">Explorar</span>
                 </div>
               </div>
-              <p className="text-blue-500 text-sm font-semibold mb-2">{p.category}</p>
-              <h4 className="text-2xl font-bold group-hover:text-blue-400 transition-colors">{p.title}</h4>
+              <p className="text-cyan-500 text-[10px] font-black uppercase tracking-[0.3em] mb-2">{p.category}</p>
+              <h4 className="text-2xl font-bold group-hover:text-cyan-400 transition-colors tracking-tight">{p.title}</h4>
             </div>
           ))}
         </div>

@@ -6,7 +6,7 @@ import { Message } from '../types';
 const AIAssistant: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
-    { role: 'model', text: 'Olá! Sou o consultor da DevVision. Como posso ajudar a estruturar seu novo projeto hoje?' }
+    { role: 'model', text: 'Olá! Sou o estrategista da TheVision. Como posso transformar sua visão em um produto digital de elite hoje?' }
   ]);
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -41,90 +41,84 @@ const AIAssistant: React.FC = () => {
 
   const openWhatsApp = () => {
     const phoneNumber = '258835127350';
-    const lastMessage = messages[messages.length - 1]?.text || "";
-    const text = `Olá! Estava conversando com seu assistente de IA sobre: "${lastMessage.substring(0, 100)}..." e gostaria de formalizar um orçamento.`;
+    const lastUserMsg = messages.filter(m => m.role === 'user').pop()?.text || "Gostaria de um orçamento.";
+    const text = `Olá! Estava conversando com seu assistente de IA da TheVision sobre meu projeto: "${lastUserMsg.substring(0, 100)}" e gostaria de falar com um especialista sobre preços e prazos.`;
     window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(text)}`, '_blank');
   };
 
   return (
     <div className="fixed bottom-6 right-6 z-[60]">
-      {/* Trigger Button */}
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className={`w-14 h-14 rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 transform hover:scale-110 active:scale-90 ${isOpen ? 'bg-slate-800 text-white' : 'bg-blue-600 text-white shadow-blue-600/30'}`}
+        className={`w-16 h-16 rounded-2xl flex items-center justify-center shadow-2xl transition-all duration-500 transform hover:scale-110 active:scale-90 ${isOpen ? 'bg-slate-800 text-white' : 'bg-cyan-500 text-slate-950 shadow-cyan-500/30'}`}
+        aria-label="Abrir Assistente de IA"
       >
-        <i className={`fas ${isOpen ? 'fa-times' : 'fa-comment-dots'} text-2xl`}></i>
+        <i className={`fas ${isOpen ? 'fa-times' : 'fa-brain-circuit'} text-2xl`}></i>
       </button>
 
-      {/* Chat Window */}
       {isOpen && (
-        <div className="absolute bottom-20 right-0 w-[350px] md:w-[400px] h-[550px] glass rounded-3xl flex flex-col shadow-2xl border border-white/10 overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-300">
-          <div className="bg-gradient-to-r from-blue-600 to-indigo-600 p-4 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="relative w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
-                <i className="fas fa-robot"></i>
-                <span className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-slate-950 rounded-full"></span>
+        <div className="absolute bottom-20 right-0 w-[350px] md:w-[420px] h-[600px] glass rounded-[2.5rem] flex flex-col shadow-2xl border border-white/10 overflow-hidden animate-in fade-in slide-in-from-bottom-8 duration-500">
+          <div className="bg-gradient-to-r from-cyan-600 to-emerald-600 p-6 flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <div className="relative w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center border border-white/30">
+                <i className="fas fa-microchip text-xl text-white"></i>
+                <span className="absolute -top-1 -right-1 w-4 h-4 bg-emerald-400 border-4 border-cyan-600 rounded-full"></span>
               </div>
               <div>
-                <h3 className="font-bold text-sm">Consultor DevVision</h3>
-                <p className="text-[10px] text-white/70">IA Online • Especialista</p>
+                <h3 className="font-black text-sm tracking-tight text-white">Estrategista TheVision</h3>
+                <p className="text-[10px] text-white/70 font-bold uppercase tracking-widest">IA Conectada</p>
               </div>
             </div>
             <button 
               onClick={openWhatsApp} 
-              className="w-10 h-10 rounded-xl hover:bg-white/10 flex items-center justify-center text-white transition-colors" 
-              title="Chamar no WhatsApp"
+              title="Falar com especialista"
+              className="w-10 h-10 rounded-xl bg-emerald-500 hover:bg-white text-white hover:text-emerald-600 flex items-center justify-center transition-all shadow-lg animate-pulse" 
             >
               <i className="fab fa-whatsapp text-xl"></i>
             </button>
           </div>
 
-          <div className="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-hide bg-slate-950/20">
+          <div className="flex-1 overflow-y-auto p-6 space-y-6 scrollbar-hide bg-slate-950/40">
             {messages.map((m, idx) => (
               <div key={idx} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                <div className={`max-w-[85%] p-3 rounded-2xl text-sm leading-relaxed ${m.role === 'user' ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/10' : 'bg-slate-800 text-slate-100 border border-white/5'}`}>
+                <div className={`max-w-[85%] p-4 rounded-2xl text-sm leading-relaxed ${m.role === 'user' ? 'bg-cyan-600 text-slate-950 font-medium shadow-lg shadow-cyan-600/10' : 'bg-slate-800 text-slate-100 border border-white/5'}`}>
                   {m.text}
                 </div>
               </div>
             ))}
             {isLoading && (
               <div className="flex justify-start">
-                <div className="bg-slate-800 p-3 rounded-2xl text-sm italic opacity-70 flex gap-2 items-center">
-                  <span className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-bounce"></span>
-                  <span className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-bounce [animation-delay:0.2s]"></span>
-                  <span className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-bounce [animation-delay:0.4s]"></span>
+                <div className="bg-slate-800 p-4 rounded-2xl text-sm italic opacity-70 flex gap-2 items-center border border-white/5">
+                  <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-bounce"></span>
+                  <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-bounce [animation-delay:0.2s]"></span>
+                  <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-bounce [animation-delay:0.4s]"></span>
                 </div>
               </div>
             )}
             <div ref={messagesEndRef} />
           </div>
 
-          <div className="p-4 bg-slate-900 border-t border-white/5">
-            {messages.length > 2 && (
-              <button 
-                onClick={openWhatsApp}
-                className="w-full mb-4 bg-green-600 hover:bg-green-700 text-white text-xs font-black py-3 rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg shadow-green-600/10 transform hover:scale-[1.02] active:scale-95"
-              >
-                <i className="fab fa-whatsapp text-lg"></i> CONTINUAR NO WHATSAPP
-              </button>
-            )}
-            <div className="flex gap-2">
+          <div className="p-6 bg-slate-900 border-t border-white/5">
+            <div className="flex gap-3">
               <input 
                 type="text" 
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-                placeholder="Ex: Como criar um e-commerce?"
-                className="flex-1 bg-slate-950 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-500 transition-colors text-white placeholder:text-slate-600"
+                placeholder="Dúvidas sobre seu site?"
+                className="flex-1 bg-slate-950 border border-white/10 rounded-xl px-4 py-4 text-sm focus:outline-none focus:border-cyan-500 transition-colors text-white placeholder:text-slate-600"
               />
               <button 
                 onClick={handleSend}
                 disabled={isLoading || !inputValue.trim()}
-                className="bg-blue-600 hover:bg-blue-700 p-2 rounded-xl w-12 h-12 flex items-center justify-center disabled:opacity-30 disabled:hover:bg-blue-600 transition-all transform active:scale-90"
+                className="bg-cyan-500 hover:bg-cyan-400 text-slate-950 p-2 rounded-xl w-14 h-14 flex items-center justify-center disabled:opacity-30 transition-all transform active:scale-90 shadow-lg shadow-cyan-500/20"
               >
-                <i className="fas fa-paper-plane text-sm"></i>
+                <i className="fas fa-paper-plane"></i>
               </button>
             </div>
+            <p className="text-[9px] text-center text-slate-600 mt-4 font-bold uppercase tracking-widest">
+              Para orçamentos detalhados, use o botão WhatsApp acima.
+            </p>
           </div>
         </div>
       )}
